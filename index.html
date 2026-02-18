@@ -13,6 +13,7 @@
     <nav>
       <button data-tab="learn" class="active">Õpi</button>
       <button data-tab="sims">Simulatsioonid</button>
+      <button data-tab="games">🎮 Mängud</button>
       <button data-tab="quiz">Viktoriin</button>
     </nav>
   </header>
@@ -94,7 +95,19 @@
     </section>
 
     <section id="quiz" class="tab hidden">
-      <h2>🎮 Viktoriin</h2>
+      <h2>🎮 Mängud</h2>
+      <div class="games-nav">
+        <button class="game-tab active" data-game="1">🎯 Target</button>
+        <button class="game-tab" data-game="2">🧩 Väravad</button>
+        <button class="game-tab" data-game="3">📊 Mõõtmine</button>
+        <button class="game-tab" data-game="4">✨ Superpos</button>
+      </div>
+      
+      <div id="gameContainer" class="card"></div>
+    </section>
+
+    <section id="quiz" class="tab hidden">
+      <h2>🎯 Viktoriin</h2>
       <p>Katsetage oma teadmisi! Klõpsake õiged vastused.</p>
       <div id="quizBox" class="card"></div>
       <div id="quizResult" class="card hidden"></div>
