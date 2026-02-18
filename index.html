@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kvantfüüsika mäng ja simulatsioon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Kvantfüüsika — mäng & simulatsioon</h1>
+    <nav>
+      <button data-tab="learn" class="active">Õpi</button>
+      <button data-tab="sims">Simulatsioonid</button>
+      <button data-tab="quiz">Viktoriin</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="learn" class="tab">
+      <h2>📚 Sissejuhatus kvantfüüsikasse</h2>
+      <p>Kasutage interaktiivseid simulatsioone ja mängu, et mõista kvantmehaanika põhitõdesid.</p>
+      
+      <div class="grid">
+        <div class="card">
+          <h3>Kvbit (Quantum Bit)</h3>
+          <p>Klassikaline bitt on kas 0 või 1. <strong>Kvbit</strong> võib olla mõlemad korraga! Seda nimetatakse <strong>superpositsiooni</strong>ks.</p>
+          <p>Blochi sfäär visualiseerib kvbiti seisundit kolmemõõtmeliselt:</p>
+          <ul>
+            <li><strong>|0⟩:</strong> Olek "0" (sfääri ülaosas)</li>
+            <li><strong>|1⟩:</strong> Olek "1" (sfääri allosas)</li>
+            <li><strong>Superpositsiooni:</strong> Kõik teised punkte sfäärilt</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Kvantväravad</h3>
+          <p>Väravad transformeerivad kvbiti seisundit. Kõige olulisemad:</p>
+          <ul>
+            <li><strong>X värav:</strong> Pööramine X-telje ümber (NOT-värav)</li>
+            <li><strong>Y värav:</strong> Pööramine Y-telje ümber</li>
+            <li><strong>Z värav:</strong> Pööramine Z-telje ümber (faasimuutus)</li>
+            <li><strong>H värav (Hadamard):</strong> Superpositsiooni tekitaja</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Interferents (Double-Slit)</h3>
+          <p>Kvantkosakesed käituvad lainete nagu. Kui need lähevad kahe pilu kaudu, lained interfereerivad:</p>
+          <ul>
+            <li><strong>Konstruktiivne:</strong> Lained liituvad → heledus</li>
+            <li><strong>Destruktiivne:</strong> Lained tühistavad → pimedus</li>
+          </ul>
+          <p>Muutke slit-i kaugust, lainepikkust ja ekraani kaugust!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sims" class="tab hidden">
+      <h2>🔬 Interaktiivsed simulatsioonid</h2>
+      
+      <div class="grid">
+        <div class="card">
+          <h3>🌐 Blochi sfäär — kvbiti visualiseerimine</h3>
+          <p style="font-size:13px;color:#999">Liigutage slidereid, et muuta kvbiti seisundit. Kasutage väravaid transformatsioonide rakendamiseks.</p>
+          <canvas id="bloch" width="400" height="400"></canvas>
+          <div class="controls">
+            <label>Theta (θ): <input type="range" id="theta" min="0" max="3.1416" step="0.01" value="1.0"></label>
+            <label>Phi (φ): <input type="range" id="phi" min="0" max="6.2832" step="0.01" value="0.0"></label>
+            <div class="btns">
+              <button id="applyX" title="Pauli X värav">X</button>
+              <button id="applyY" title="Pauli Y värav">Y</button>
+              <button id="applyZ" title="Pauli Z värav">Z</button>
+              <button id="applyH" title="Hadamardi värav">H</button>
+              <button id="resetState">↺ Reset</button>
+            </div>
+            <div id="stateInfo" class="stateInfo"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>〰️ Topel-lõhe simulatsioon</h3>
+          <p style="font-size:13px;color:#999">Interferentsmuster sõltub lainepikkusest ja slit-i kaugusest.</p>
+          <canvas id="doubleSlit" width="600" height="220"></canvas>
+          <div class="controls">
+            <label>Slit distance: <input id="slitSep" type="range" min="0.5" max="5" step="0.1" value="2"></label>
+            <label>Wavelength: <input id="wavelength" type="range" min="0.1" max="2" step="0.05" value="0.5"></label>
+            <label>Screen distance: <input id="screenD" type="range" min="10" max="200" step="1" value="80"></label>
+            <button id="rerunSlit">🔄 Ümberarvuta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="tab hidden">
+      <h2>🎮 Viktoriin</h2>
+      <p>Katsetage oma teadmisi! Klõpsake õiged vastused.</p>
+      <div id="quizBox" class="card"></div>
+      <div id="quizResult" class="card hidden"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">⚛️ Kvantfüüsika õppemäng · Avage lihtsalt index.html brauseris</footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
