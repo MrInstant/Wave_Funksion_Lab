@@ -787,14 +787,46 @@ function initGame4() {
   animate();
 }
 
-// Game tab switching
+// Tab switching & initialization
 document.addEventListener('DOMContentLoaded', () => {
+  // Header nav tab switching (data-tab)
+  const navButtons = document.querySelectorAll('header nav button[data-tab]');
+  const tabs = document.querySelectorAll('main .tab');
+
+  function showTab(name) {
+    tabs.forEach(t => t.classList.add('hidden'));
+    const target = document.getElementById(name);
+    if (target) target.classList.remove('hidden');
+    navButtons.forEach(b => b.classList.remove('active'));
+    const btn = Array.from(navButtons).find(x => x.dataset.tab === name);
+    if (btn) btn.classList.add('active');
+
+    // If user opened Games tab, ensure a game is initialized
+    if (name === 'games' && document.getElementById('gameContainer')) {
+      const gc = document.getElementById('gameContainer');
+      if (gc.innerHTML.trim() === '') {
+        // initialize first game
+        if (typeof initGame1 === 'function') initGame1();
+      }
+    }
+  }
+
+  navButtons.forEach(btn => btn.addEventListener('click', (e) => {
+    showTab(btn.dataset.tab);
+  }));
+
+  // Game tab buttons (inside Games section)
   document.querySelectorAll('.game-tab').forEach(btn => {
     btn.addEventListener('click', (e) => {
       document.querySelectorAll('.game-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const gameNum = btn.dataset.game;
-      eval('initGame' + gameNum + '()');
+      const fn = window['initGame' + gameNum];
+      if (typeof fn === 'function') fn();
     });
   });
+
+  // Show the header's active tab on load (defaults to the one marked active in HTML)
+  const activeHeader = document.querySelector('header nav button.active');
+  if (activeHeader) showTab(activeHeader.dataset.tab);
 });
